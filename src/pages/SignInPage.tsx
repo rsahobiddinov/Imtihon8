@@ -37,7 +37,6 @@ const SignInPage = () => {
       
       setTimeout(() => {
         setIsLoading(false);
-        // Изменил на true для тестирования - потом замените на настоящую логику проверки
         const accountExists = true; 
         
         if (!accountExists) {
@@ -50,11 +49,7 @@ const SignInPage = () => {
         if (formData.rememberMe) {
           localStorage.setItem('rememberUser', 'true');
         }
-        
-        // Сохраняем флаг авторизации
         localStorage.setItem('isAuthenticated', 'true');
-        
-        // Переход на dashboard
         navigate("/dashboard");
       }, 1500);
 
@@ -74,11 +69,11 @@ const SignInPage = () => {
               <span className="brand-title">Woorkroom</span>
             </div>
             <p className="description text-white text-[40px] max-w-[400px]">
-              Your place to work Plan. Create. Control.
+                 Your place to work Plan. Create. Control.
             </p>
             <img
-              width={500}
-              height={373}
+              width={700}
+              height={350}
               src={Illustration}
               alt="Illustration"
             />
