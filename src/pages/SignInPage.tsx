@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import Illustration from "../assets/icons/Illustration2.svg";
 import "../assets/styles/sign-in.css";
 import Button from "../components/ui/Button";
@@ -11,20 +11,20 @@ const SignInPage = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    rememberMe: false
+    rememberMe: false,
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -34,25 +34,24 @@ const SignInPage = () => {
       if (!formData.email || !formData.password) {
         throw new Error("Пожалуйста, заполните все поля");
       }
-      
+
       setTimeout(() => {
         setIsLoading(false);
-        const accountExists = true; 
-        
+        const accountExists = true;
+
         if (!accountExists) {
           setError("Аккаунт не найден, пожалуйста зарегистрируйтесь");
           return;
         }
-        
+
         console.log("Данные для входа:", formData);
-        
+
         if (formData.rememberMe) {
-          localStorage.setItem('rememberUser', 'true');
+          localStorage.setItem("rememberUser", "true");
         }
-        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem("isAuthenticated", "true");
         navigate("/dashboard");
       }, 1500);
-
     } catch (err) {
       setError(err.message);
       setIsLoading(false);
@@ -69,7 +68,7 @@ const SignInPage = () => {
               <span className="brand-title">Woorkroom</span>
             </div>
             <p className="description text-white text-[40px] max-w-[400px]">
-                 Your place to work Plan. Create. Control.
+              Your place to work Plan. Create. Control.
             </p>
             <img
               width={700}
@@ -100,9 +99,14 @@ const SignInPage = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="w-full flex flex-col gap-y-[31px] mt-[33px]">
+            <form
+              onSubmit={handleSubmit}
+              className="w-full flex flex-col gap-y-[31px] mt-[33px]"
+            >
               <div className="flex flex-col">
-                <label className="font-medium text-[16px] text-[#1A1D29] mb-2">Email Address</label>
+                <label className="font-medium text-[16px] text-[#1A1D29] mb-2">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -114,7 +118,9 @@ const SignInPage = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="font-medium text-[16px] text-[#1A1D29] mb-2">Password</label>
+                <label className="font-medium text-[16px] text-[#1A1D29] mb-2">
+                  Password
+                </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
@@ -136,8 +142,8 @@ const SignInPage = () => {
               </div>
               <div className="flex justify-between">
                 <div className="flex gap-x-2">
-                  <input 
-                    id="save-me" 
+                  <input
+                    id="save-me"
                     name="rememberMe"
                     type="checkbox"
                     checked={formData.rememberMe}
@@ -150,7 +156,7 @@ const SignInPage = () => {
                     Remember me
                   </label>
                 </div>
-                <span 
+                <span
                   className="font-medium text-[16px] text-[rgb(125_133_146)] cursor-pointer hover:text-[#3F8CFF]"
                   onClick={() => navigate("/forgot-password")}
                 >
@@ -158,7 +164,7 @@ const SignInPage = () => {
                 </span>
               </div>
               <div className="flex flex-col items-center gap-y-[20px]">
-                <button 
+                <button
                   type="submit"
                   className="bg-[#3F8CFF] text-white px-8 py-3 rounded-lg font-medium text-[16px] flex items-center gap-x-2 hover:bg-[#2b7ae4] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={isLoading}
@@ -166,11 +172,12 @@ const SignInPage = () => {
                   {isLoading ? "Signing In..." : "Sign In"}
                   <Icon.rightArrowIcon />
                 </button>
-                <span 
+                <span
                   className="font-semibold text-[16px] text-[#3F8CFF] cursor-pointer hover:underline transition-all duration-200"
                   onClick={() => navigate("/sign-up")}
                 >
-                  Don't have an account? <span className="underline">Sign Up</span>
+                  Don't have an account?{" "}
+                  <span className="underline">Sign Up</span>
                 </span>
               </div>
             </form>

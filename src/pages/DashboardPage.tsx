@@ -1,157 +1,277 @@
-import React, { useState } from "react";
-import evanSvg from "../assets/icons/evan.svg";
-import friend1Svg from "../assets/icons/freand1.svg";
-import friend2Svg from "../assets/icons/freand2.svg";
-import friend3Svg from "../assets/icons/freand3.svg";
-import friend4Svg from "../assets/icons/freand4.svg";
-import illustration3Svg from "../assets/icons/Illustration 3.svg";
+    import React, { useState } from 'react'; 
+    import { Search, Bell, Calendar, ChevronRight, Plus } from 'lucide-react'; 
+    import user1 from '../assets/icons/user1.svg'; 
+    import user2 from '../assets/icons/user2.svg'; 
+    import user3 from '../assets/icons/user3.svg'; 
+    import user4 from '../assets/icons/user6.svg';
+    import user5 from '../assets/icons/freand1.svg'; 
+    import user6 from '../assets/icons/user4.svg'; 
+    import user7 from '../assets/icons/user5.svg';
+    import user8 from '../assets/icons/freand3.svg';
+    import freand4 from '../assets/icons/freand4.svg'; 
+    import five from '../assets/icons/five.svg'; 
+    import projectIcon1 from '../assets/icons/Image.svg'; 
+    import projectIcon2 from '../assets/icons/Image (1).svg';
+    import projectIcon3 from '../assets/icons/Image (3).svg';
+    import mainUserPhoto from '../assets/icons/photo.svg';
 
-const DashboardPage = () => {
-  const [selectedView, setSelectedView] = useState("list");
+    const DashboardPage = () => {
+    const workloadUsers = [
+        { name: 'Shawn Stone', role: 'UI/UX Designer', status: 'Today', avatar: user1 },
+        { name: 'Randy Delgado', role: 'UI/UX Designer', status: 'Today', avatar: user2 },
+        { name: 'Emily Tyler', role: 'Copywriter', status: 'Today', avatar: user3 },
+        { name: 'Louis Castro', role: 'Copywriter', status: 'Today', avatar: user4 },
+        { name: 'Blake Silva', role: 'iOS Developer', status: 'Today', avatar: user5 },
+        { name: 'Joel Phillips', role: 'UI/UX Designer', status: 'Today', avatar: user6 },
+        { name: 'Wayne Marsh', role: 'Copywriter', status: 'Today', avatar: user7 },
+        { name: 'Oscar Holloway', role: 'UI/UX Designer', status: 'Today', avatar: user8 }
+    ];
+    const projects = [
+        {
+        id: 'PN0001265',
+        name: 'Medical App (iOS native)',
+        created: 'Created Sep 12, 2020',
+        priority: 'Medium',
+        priorityColor: 'text-yellow-500',
+        allTasks: 34,
+        activeTasks: 13,
+        assignees: [user1, user2, user3, freand4],
+        icon: projectIcon1
+        },
+        {
+        id: 'PN0001227', 
+        name: 'Food Delivery Service',
+        created: 'Created Sep 10, 2020',
+        priority: 'Medium',
+        priorityColor: 'text-yellow-500',
+        allTasks: 50,
+        activeTasks: 24,
+        assignees: [user1, user2, user3],
+        icon: projectIcon2
+        },
+        {
+        id: 'PN0001230',
+        name: 'Food Delivery Service',
+        created: 'Created May 28, 2020',
+        priority: 'Low',
+        priorityColor: 'text-green-500',
+        allTasks: 23,
+        activeTasks: 20,
+        assignees: [user1, user2, user3, five],
+        icon: projectIcon3
+        }
+    ];
 
-  return (
-    <div className="flex-1 p-6 bg-gray-50">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">Time tracker - personal account</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-1">
-          <div className="bg-white rounded-xl p-6 shadow-sm">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <div className="text-sm text-gray-500 mb-1">Project Number</div>
-                <div className="font-semibold text-gray-900">PM0001245</div>
-              </div>
-              <button className="text-gray-400 hover:text-gray-600">
-                <svg
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-                </svg>
-              </button>
+    const events = [
+        {
+        title: 'Presentation of the new department',
+        time: 'Today | 5:00 PM',
+        duration: '4h',
+        color: 'bg-blue-100 border-blue-200'
+        },
+        {
+        title: "Anna's Birthday",
+        time: 'Today | 6:00 PM', 
+        duration: '4h',
+        color: 'bg-purple-100 border-purple-200'
+        },
+        {
+        title: "Ray's Birthday",
+        time: 'Tomorrow | 2:00 PM',
+        duration: '4h', 
+        color: 'bg-green-100 border-green-200'
+        }
+    ];
+
+    const activities = [
+        {
+        user: 'Oscar Holloway',
+        role: 'UI/UX Designer',
+        action: 'Updated the status of Mind Map task to In Progress',
+        avatar: user8
+        },
+        {
+        user: 'Emily Tyler', 
+        role: 'Copywriter',
+        action: 'Attached files to the task',
+        avatar: user3
+        }
+    ];
+
+    return (
+        <div className="min-h-screen bg-gray-50 p-6">
+        <div className="flex justify-between items-center mb-8">
+            <div className="flex items-center space-x-4">
+            <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input 
+                type="text" 
+                placeholder="Search" 
+                className="pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
             </div>
-            <div className="mb-6">
-              <div className="text-sm font-semibold text-gray-900 mb-2">
-                Description
-              </div>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                App for maintaining your medical record, making appointments
-                with a doctor, storing prescriptions
-              </p>
             </div>
-            <div className="mb-6">
-              <div className="text-sm font-semibold text-gray-900 mb-2">
-                Reporter
-              </div>
-              <div className="flex items-center gap-2">
-                <img src={evanSvg} alt="Evan Tates" className="w-10 h-10 rounded-full" />
-                <span className="text-sm text-gray-700">Evan Tates</span>
-              </div>
+            <div className="flex items-center space-x-4">
+            <Bell className="w-6 h-6 text-gray-600" />
+            <div className="flex items-center space-x-2">
+                <img 
+                src={mainUserPhoto} 
+                alt="Evan Yates" 
+                className="w-8 h-8 rounded-full object-cover"
+                />
+                <span className="text-sm font-medium">Evan Yates</span>
             </div>
-            <div className="mb-6">
-              <div className="text-sm font-semibold text-gray-900 mb-2">
-                Assignees
-              </div>
-              <div className="flex gap-0">
-                <img src={friend1Svg} alt="Assignee 1" className="w-10 h-10 rounded-full" />
-                <img src={friend2Svg} alt="Assignee 2" className="w-10 h-10 rounded-full" />
-                <img src={friend3Svg} alt="Assignee 3" className="w-10 h-10 rounded-full" />
-                <img src={friend4Svg} alt="Assignee 4" className="w-10 h-10 rounded-full" />
-              </div>
             </div>
-            <div className="mb-6">
-              <div className="text-sm font-semibold text-gray-900 mb-2">
-                Priority
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="text-yellow-500 text-lg">🔝</div>
-                <span className="text-sm text-gray-700">Medium</span>
-              </div>
-            </div>
-            <div className="mb-6">
-              <div className="text-sm font-semibold text-gray-900 mb-2">
-                Dead Line
-              </div>
-              <div className="text-sm text-gray-700">Feb 23, 2020</div>
-            </div>
-            <div className="mb-6">
-              <div className="text-xs text-gray-500 flex items-center gap-2">
-                <svg
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M10 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2h-8l-2-2z" />
-                </svg>
-                Created May 28, 2020
-              </div>
-            </div>
-          </div>
         </div>
-        <div className="lg:col-span-2">
-          <div className="bg-white rounded-xl p-6 shadow-sm h-full">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-gray-900">Tasks</h2>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setSelectedView("list")}
-                  className={`p-2 border border-gray-200 rounded hover:bg-gray-50 ${
-                    selectedView === "list" ? "bg-gray-50" : ""
-                  }`}
-                >
-                  <svg
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" />
-                  </svg>
-                </button>
-                <button
-                  onClick={() => setSelectedView("grid")}
-                  className={`p-2 border border-gray-200 rounded hover:bg-gray-50 ${
-                    selectedView === "grid" ? "bg-gray-50" : ""
-                  }`}
-                >
-                  <svg
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
-                  </svg>
-                </button>
-              </div>
+        <div className="flex justify-between items-center mb-8">
+            <div>
+            <p className="text-gray-500 text-sm mb-1">Welcome back, Evan!</p>
+            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
             </div>
-            <div className="flex flex-col items-center justify-center py-100 h-full">
-              <div className="w-70 h-100 mx-auto mb-8">
-                <img src={illustration3Svg} alt="No tasks" className="w-full h-full" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                There are no tasks in this project yet
-              </h3>
-              <p className="text-gray-500 text-sm mb-6">Let's add them</p>
-              <button className="bg-[#3F8CFF] text-white px-6 py-3 rounded-lg font-medium flex items-center gap-2 hover:bg-[#2b7ae4] transition-colors">
-                <svg
-                  width="20"
-                  height="16"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-                </svg>
-                Add Task
-              </button>
+            <div className="flex items-center space-x-2 bg-white px-4 py-2 rounded-lg border border-gray-200">
+            <Calendar className="w-5 h-5 text-gray-600" />
+            <span className="text-sm font-medium">Nov 16, 2020 - Dec 16, 2020</span>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  );
-};
 
-export default DashboardPage;
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-8">
+            <div className="bg-white rounded-2xl shadow-sm p-6">
+                <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-900">Workload</h2>
+                <button className="flex items-center text-blue-600 text-sm font-medium hover:text-blue-700">
+                    View all <ChevronRight className="w-4 h-4 ml-1" />
+                </button>
+                </div>
+                <div className="grid grid-cols-4 gap-4">
+                {workloadUsers.map((user, index) => (
+                    <div key={index} className="text-center">
+                    <div className="relative mb-3">
+                        <img 
+                        src={user.avatar} 
+                        alt={user.name}
+                        className="w-16 h-16 rounded-full mx-auto object-cover"
+                        />
+                        <div className="absolute -bottom-1 right-1/2 transform translate-x-1/2 bg-white border-2 border-white rounded-full">
+                        </div>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 text-sm mb-1">{user.name}</h3>
+                    <p className="text-gray-500 text-xs mb-2">{user.role}</p>
+                    <span className="inline-block bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
+                        {user.status}
+                    </span>
+                    </div>
+                ))}
+                </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-sm p-6">
+                <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-900">Projects</h2>
+                <button className="flex items-center text-blue-600 text-sm font-medium hover:text-blue-700">
+                    View all <ChevronRight className="w-4 h-4 ml-1" />
+                </button>
+                </div>
+                <div className="space-y-4">
+                {projects.map((project) => (
+                    <div key={project.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-gradient-to-br rounded-lg flex items-center justify-center">
+                        <img 
+                            src={project.icon} 
+                            alt="Project Icon" 
+                            className="w-30 h-20"
+                        />
+                        </div>
+                        <div>
+                        <div className="flex items-center space-x-2 mb-1">
+                            <span className="text-xs text-gray-500">{project.id}</span>
+                            <span className={`text-xs font-medium ${project.priorityColor}`}>
+                            {project.priority}
+                            </span>
+                        </div>
+                        <h3 className="font-semibold text-gray-900">{project.name}</h3>
+                        <p className="text-sm text-gray-500">{project.created}</p>
+                        </div>
+                    </div>
+                    
+                    <div className="flex items-center space-x-8">
+                        <div className="text-center">
+                        <div className="text-sm text-gray-500">All tasks</div>
+                        <div className="font-semibold text-gray-900">{project.allTasks}</div>
+                        </div>
+                        <div className="text-center">
+                        <div className="text-sm text-gray-500">Active tasks</div>
+                        <div className="font-semibold text-gray-900">{project.activeTasks}</div>
+                        </div>
+                        <div className="text-center">
+                        <div className="text-sm text-gray-500">Assignees</div>
+                        <div className="flex -space-x-1 mt-1 justify-center">
+                            {project.assignees.map((assignee, index) => (
+                            <img 
+                                key={index} 
+                                src={assignee} 
+                                alt={`Assignee ${index + 1}`}
+                                className="w-6 h-6 rounded-full border-2 border-white object-cover"
+                            />
+                            ))}
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                ))}
+                </div>
+            </div>
+            </div>
+            <div className="space-y-8">
+            <div className="bg-white rounded-2xl shadow-sm p-6">
+                <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-900">Nearest Events</h2>
+                <button className="flex items-center text-blue-600 text-sm font-medium hover:text-blue-700">
+                    View all <ChevronRight className="w-4 h-20 ml-1" />
+                </button>
+                </div>
+                <div className="space-y-4">
+                {events.map((event, index) => (
+                    <div key={index} className={`p-4 rounded-lg border ${event.color}`}>
+                    <div className="flex justify-between items-start mb-1">
+                        <h3 className="font-semibold text-gray-900 text-sm">{event.title}</h3>
+                        <span className="text-xs text-gray-500">{event.duration}</span>
+                    </div>
+                    <p className="text-xs text-gray-600">{event.time}</p>
+                    </div>
+                ))}
+                </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-sm p-6">
+                <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-gray-900">Activity Stream</h2>
+                </div>
+                <div className="space-y-4">
+                {activities.map((activity, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                    <img 
+                        src={activity.avatar} 
+                        alt={activity.user}
+                        className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <div className="flex-1">
+                        <div className="flex items-center space-x-2 mb-1">
+                        <h3 className="font-semibold text-gray-900 text-sm">{activity.user}</h3>
+                        <span className="text-xs text-gray-500">{activity.role}</span>
+                        </div>
+                        <p className="text-sm text-gray-600">{activity.action}</p>
+                    </div>
+                    </div>
+                ))}
+                <button className="w-full text-center text-blue-600 text-sm font-medium hover:text-blue-700 mt-4">
+                    View more
+                </button>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    );
+    };
+
+    export default DashboardPage;
